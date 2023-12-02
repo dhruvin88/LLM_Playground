@@ -1,6 +1,9 @@
 # Bring in deps
 import os 
-from apikeys import openai_key, huggingface_key
+import sys
+sys.path.append('../')
+
+from LLM_Playground import apikeys
 
 import streamlit as st 
 from langchain import HuggingFaceHub
@@ -10,8 +13,8 @@ from langchain.chains import LLMChain, SequentialChain
 from langchain.memory import ConversationBufferMemory
 from langchain.utilities import WikipediaAPIWrapper 
 
-os.environ['OPENAI_API_KEY'] = openai_key
-os.environ['HUGGINGFACEHUB_API_TOKEN'] = huggingface_key
+os.environ['OPENAI_API_KEY'] = apikeys.openai_key
+os.environ['HUGGINGFACEHUB_API_TOKEN'] = apikeys.huggingface_key
 
 # App framework
 st.title('🦜🔗 Explain Like a fifth grader?')
@@ -25,13 +28,12 @@ script_template = PromptTemplate(
 # Memory
 script_memory = ConversationBufferMemory(input_key='title', memory_key='chat_history')
 
-
 # Llms
-llm = OpenAI(temperature=0.9) 
-#llm = llm=HuggingFaceHub(repo_id="google/flan-t5-large", model_kwargs={"temperature":0.9})
+#llm = OpenAI(model='gpt-3.5-turbo', temperature=0.9) 
+llm = llm=HuggingFaceHub(repo_id="tiiuae/falcon-7b-instruct", model_kwargs={"temperature":0.9})
 script_chain = LLMChain(llm=llm, prompt=script_template, verbose=True, output_key='script', memory=script_memory)
 
-wiki = WikipediaAPIWrapper()
+wiki = WikipediaAPIWrapper(top_k_results=1)
 
 # Show stuff to the screen if there's a prompt
 if prompt: 
