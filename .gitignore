@@ -164,3 +164,7 @@ apikeys.py
 
 *.pdf
 *.json
+data/Hunter LPN, Laura_ Walker RN BSN, Jennifer - Moms on Call _ Basic Baby Care 0-6 Months _ Parenting Book 1 of 3 (Moms On Call Parenting Books)-Moms on Call (2012).epub
+RAG/default.sqlite
+RAG/.streamlit/config.toml
+RAG/.streamlit/credentials.toml
