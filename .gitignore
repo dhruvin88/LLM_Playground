@@ -168,3 +168,12 @@ data/Hunter LPN, Laura_ Walker RN BSN, Jennifer - Moms on Call _ Basic Baby Care
 RAG/default.sqlite
 RAG/.streamlit/config.toml
 RAG/.streamlit/credentials.toml
+
+*.yaml
+*.pt 
+*.pth 
+*.wandb
+*.bin
+*.safetensors
+*.txt
+*.csv
